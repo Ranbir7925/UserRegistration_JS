@@ -1,10 +1,31 @@
-console.log("Welcome to User Registration ..\n");
-const prompt = require('prompt-sync')()
-let namePattern = new RegExp("^[A-Z][A-Za-z0-9]{2,}$");
-let name = prompt("Enter your first name: ")
+console.log("Welcome to User Registration ..");
+console.log("Name should start with Capital letter and should have minimum 3 characters.");
 
-if (namePattern.test(name)) {
-    console.log(name + " your first name is saved");
+const prompt = require('prompt-sync')()
+const namePattern = new RegExp("^[A-Z][A-Za-z]{2,}$");
+
+function checkValidation(name, namePattern) {
+    let flag
+    if (namePattern.test(name)) {
+        console.log(" Saved");
+        flag = false
+    }
+    else {
+        console.log("Invalid .. Please enter agian ");
+        flag = true
+    }
+    return flag 
 }
-else
-    console.log("Invalid Name");
+while (true) {
+    let firstName = prompt("Enter your first name: ")
+    let check = checkValidation(firstName, namePattern)
+    if (check == false)
+        break;
+}
+
+while (true) {
+    let lastName = prompt("Enter your last name: ")
+    let check = checkValidation(lastName, namePattern)
+    if (check == false)
+        break;
+}
